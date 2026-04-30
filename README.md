@@ -65,7 +65,7 @@ TodoApp/
 The application currently uses PostgreSQL in `TodoApp/database.py`:
 
 ```python
-SQLALCHEMY_DATABASE_URL = 'postgresql://postgres:test1234@localhost/postgres'
+SQLALCHEMY_DATABASE_URL = 'postgresql://postgres:password@localhost/yourdatabasename'
 ```
 
 Make sure PostgreSQL is running and the username, password, host, and database name match your local setup.
