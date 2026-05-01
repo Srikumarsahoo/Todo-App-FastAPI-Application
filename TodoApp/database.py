@@ -1,7 +1,14 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, declarative_base
+from dotenv import load_dotenv
+import os
 
-SQLALCHEMY_DATABASE_URL =  'postgresql://postgres_database_7qam_user:saRy9PPKzERQk0yQfiVNb6hIQlfJvQw4@dpg-d7potm8sfn5c73aalkog-a/postgres_database_7qam'
+load_dotenv()
+
+SQLALCHEMY_DATABASE_URL = os.getenv("RENDER_POSTGRES_URL")
+
+if not SQLALCHEMY_DATABASE_URL:
+    raise ValueError("RENDER_POSTGRES_URL is not set in the environment.")
 
 engine = create_engine(SQLALCHEMY_DATABASE_URL)
 

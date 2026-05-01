@@ -1,9 +1,11 @@
 from logging.config import fileConfig
+import os
 
 from sqlalchemy import engine_from_config
 from sqlalchemy import pool
 
 from alembic import context
+from dotenv import load_dotenv
 
 import models 
 
@@ -14,6 +16,15 @@ config = context.config
 # Interpret the config file for Python logging.
 # This line sets up loggers basically.
 fileConfig(config.config_file_name)
+
+load_dotenv()
+
+database_url = os.getenv("RENDER_POSTGRES_URL")
+
+if not database_url:
+    raise ValueError("RENDER_POSTGRES_URL is not set in the environment.")
+
+config.set_main_option("sqlalchemy.url", database_url)
 
 # add your model's MetaData object here
 # for 'autogenerate' support
